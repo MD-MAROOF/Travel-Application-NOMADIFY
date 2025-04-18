@@ -80,7 +80,7 @@ app.delete("/listings/:id", async (req, res) => {
   console.log(deletedListing);
   res.redirect("/listings");
 });
-
+//this is just a demo line 
 // app.get("/testListing",async (req,res)=>{
 //     let sampleListing = new Listing({
 //         title : "My Home",
