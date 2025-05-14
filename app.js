@@ -51,7 +51,7 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
   const listing = await Listing.findById(id);
   res.render("listings/show.ejs", { listing });
 }));
-
+//
 //This is CREATE Route
 app.post("/listings",
   wrapAsync(async (req, res, next) => {
