@@ -49,31 +49,14 @@ router.get("/:id", wrapAsync(async (req, res) => {
 //This is CREATE Route
 router.post("/", isLoggedIn, validateListing,
   wrapAsync(async (req, res, next) => {
-
-    // if (!req.body.listing) {
-    //   throw new ExpressError(400, "Send valid data for listing");
-    // }
     const newListing = new Listing(req.body.listing);
-
-
-    // if (!newListing.description) {
-    //   throw new ExpressError(400, "Missing description !");
-    // }
-    // if (!newListing.title) {
-    //   throw new ExpressError(400, "Missing Title !");
-    // }
-
-    // if (!newListing.location) {
-    //   throw new ExpressError(400, "Missing Location !");
-    // }
-
+    newListing.owner = req.user._id; 
     await newListing.save();
     req.flash("success", "New Listing Created !");
     // console.log(newListing);
     res.redirect("/listings");
 
-  })
-);
+  }));
 
 //This is the edit route
 router.get("/:id/edit",isLoggedIn, wrapAsync(async (req, res) => {
@@ -90,6 +73,13 @@ router.get("/:id/edit",isLoggedIn, wrapAsync(async (req, res) => {
 router.put("/:id", validateListing, wrapAsync(async (req, res) => {
 
   let { id } = req.params;
+  let listing = await Listing.findById(id);
+  if(!listing.owner.equals(res.locals.currUser._id))
+  {
+    req.flash("error", "You don't have permission to edit");
+    res.redirect(`/listings/${id}`);
+  }
+
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   req.flash("success", "Listing Updated");
   res.redirect("/listings");

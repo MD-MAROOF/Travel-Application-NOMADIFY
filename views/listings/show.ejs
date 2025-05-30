@@ -10,19 +10,23 @@
             <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image">
             <div class="card-body">
                 <p class="card-text">
-                    <i> <%=  listing.owner%></i>
+                    <i> Owned by: <%=  listing.owner?.username || "Unknown" %></i>
+                    <br/>
+                    </p>
                     <!-- <b> <%= listing.title %> </b><br> -->
-                    <%= listing.description %> <br>
-                        $ <%= listing.price.toLocaleString("en-IN") %> <br>
-                            <%= listing.location %> <br>
-                                <%= listing.country %> <br>
-                </p>
+
+                    <p class="card-text"><%= listing.description %> <br></p>
+                    <p class="card-text">  $ <%= listing.price.toLocaleString("en-IN") %>  </p>
+                <p class="card-text">  <%= listing.location %> <br> </p>
+                    <p class="card-text">   <%= listing.country %> </p>
+                
             </div>
 
         </div>
     </div>
 
-  
+  <!-- <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %> -->
+    
     <div class="btns">
         <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn"> Edit </a>
 
@@ -34,6 +38,8 @@
             </button>
         </form>
     </div>
+
+    <!-- <% } %> -->
 
     <div class="col-8 offset-3 mb-3">
         <hr />
