@@ -6,6 +6,9 @@ const { listingSchema } = require("../schema.js");
 const Listing = require("../models/listing.js");
 const { isLoggedIn } = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
+const multer = require('multer');
+const {storage} = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 
 
@@ -24,9 +27,10 @@ const validateListing = (req, res, next) => {
 
 router.route("/")
   .get(wrapAsync(listingController.index))
-  .post(isLoggedIn, validateListing, wrapAsync(listingController.createListing));
+  .post(isLoggedIn,upload.single("listing[image]"),validateListing, wrapAsync(listingController.createListing));
+ 
 
-  
+
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
