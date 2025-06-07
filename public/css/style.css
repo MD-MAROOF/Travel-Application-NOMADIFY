@@ -121,3 +121,10 @@ This is show.ejs */
     padding-left: 0;
     padding-right:0;
 }
+
+/* Styling map */
+
+#map{
+    height : 400px;
+    width : 80vh;
+}

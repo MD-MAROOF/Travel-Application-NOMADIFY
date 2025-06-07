@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="/"><i class="fa-solid fa-map-location-dot"></i></a> -->
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-ship "></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-ship "></i></a>
     <!-- <i class="fa-solid fa-ship fa-bounce" style="color: #fcbc73;"></i>
       <a class="navbar-brand" href="/"><i class="fa-solid fa-mountain"></i></a>  -->
 
@@ -11,20 +11,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/listings">All Listings</a>
-        <a class="nav-link" href="/listings/new">Add New Listing</a>
+        <!-- <a class="nav-link" href="/">Home</a> -->
+        <a class="nav-link" href="/listings">Explore</a>
+        
 
       </div>
 
       <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Nomadify your home</a>
         <% if(!currUser)  { %>
-        <a class="nav-link" href="/signup">Sign Up</a>
-        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+        <a class="nav-link" href="/login"><b>Log In</b></a>
         <% } %>
 
          <% if(currUser)  { %>
-        <a class="nav-link" href="/logout">Log out</a>
+        <a class="nav-link" href="/logout"><b>Log out</b></a>
         <% } %>
 
       </div>
